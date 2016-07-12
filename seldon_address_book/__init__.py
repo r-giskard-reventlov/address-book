@@ -7,4 +7,6 @@ app.secret_key = 'seldonplan'
 
 db = SQLAlchemy(app)
 
-from seldon_address_book import views, models
+from seldon_address_book import api, models
+
+db.create_all()
