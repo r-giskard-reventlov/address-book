@@ -5,11 +5,20 @@ from seldon_address_book.models import Organisation, Person
 @app.route('/', methods=['GET'])
 def discover():
     response = jsonify({
-        "links": [{
-            "rel": "create-organisation",
-            "href": "/organisations"
-        }]
+        "links": [
+            {
+                "rel": "organisations",
+                "href": "http://localhost:8080/organisations"
+            }
+        ]
     })
+    response.status_code = 200
+    return response
+
+@app.route('/organisations', methods=['GET'])
+def retrieve_organisations():
+    organisations = Organisation.query.all()
+    response = jsonify({"organisations" : [o.serialise() for o in organisations]})
     response.status_code = 200
     return response
 
