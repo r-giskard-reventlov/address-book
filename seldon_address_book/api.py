@@ -47,9 +47,22 @@ def create_organisation():
 @app.route('/organisations/<int:organisation_id>', methods=['GET'])
 def retrieve_organisation(organisation_id):
     organisation = Organisation.query.get(organisation_id)
-    response = jsonify(organisation.serialise())
+    response = jsonify({"organisation": organisation.serialise()})
     response.status_code = 200
     return response
+
+@app.route('/organisations/<int:organisation_id>', methods=['PUT'])
+def update_organisation(organisation_id):
+    organisation = Organisation.query.get(organisation_id)
+    payload = request.get_json();
+    organisation.name = payload['name']
+    organisation.address = payload['address']
+    organisation.phone = payload['phone']
+    db.session.commit()
+    response = jsonify({"organisation": organisation.serialise()})
+    response.status_code = 200
+    return response
+
 
 @app.route('/organisations/<int:organisation_id>/persons', methods=['POST'])
 def create_person(organisation_id):

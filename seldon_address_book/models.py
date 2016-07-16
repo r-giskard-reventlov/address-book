@@ -15,6 +15,7 @@ class Organisation(db.Model):
 
     def serialise(self):
         return {
+            "id": self.id,
             "name": self.name,
             "address": self.address,
             "phone": self.phone,
@@ -36,8 +37,9 @@ class Person(db.Model):
         self.surname = surname
 
     def serialise(self):
-        # TODO : add in self link to person
+        # TODO : add in self link to person, id should be a url to the person
         return {
+            "id": self.id,
             "forename": self.forename,
             "surname": self.surname
         }
