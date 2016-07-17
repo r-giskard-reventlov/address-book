@@ -26,3 +26,18 @@ To run the server call the python script run.py
 ```
 python run.py
 ```
+
+This service can be tested without the need for the client, just use your favourite REST client:
+
+```
+GET    http://localhost:8080 [discovery endpoint]
+
+GET    http://localhost:8080/organisations [list organisations]
+POST   http://localhost:8080/organisations [add organisation]
+
+GET    http://localhost:8080/organisations/:id [an organisation identified by :id]
+PUT    http://localhost:8080/organisations/:id [replace organisation]
+DELETE http://localhost:8080/organisations/:id [delete the organisation]
+```
+
+This service is also designed to be Hateoas compliant.
