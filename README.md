@@ -19,6 +19,11 @@ pip install -r requirements.txt
 
 The server is run on `localhost:8080` so please make sure this port is unused.
 
+## Configuration
+
+The address book stores details in a sqlite database which can be configured in the `config.py` file by setting the
+`SQLALCHEMY_DATABASE_URI` value to a valid path.
+
 ## Running
 
 To run the server call the python script run.py
